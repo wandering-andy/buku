@@ -375,11 +375,11 @@ PROMPT KEYS:
     Applies to --url, --title and --tag too.
 10. **Export** bookmarks tagged `tag 1` or `tag 2` to HTML, XBEL, Markdown, Orgfile or a new database:
 
-       $ buku -e bookmarks.html --stag tag 1, tag 2
-       $ buku -e bookmarks.xbel --stag tag 1, tag 2
-       $ buku -e bookmarks.md --stag tag 1, tag 2
-       $ buku -e bookmarks.org --stag tag 1, tag 2
-       $ buku -e bookmarks.db --stag tag 1, tag 2
+        $ buku -e bookmarks.html --stag tag 1, tag 2
+        $ buku -e bookmarks.xbel --stag tag 1, tag 2
+        $ buku -e bookmarks.md --stag tag 1, tag 2
+        $ buku -e bookmarks.org --stag tag 1, tag 2
+        $ buku -e bookmarks.db --stag tag 1, tag 2
     All bookmarks are exported if search is not opted.
 11. **Import** bookmarks from HTML, XBEL, Markdown or Orgfile:
 
