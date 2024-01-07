@@ -2,7 +2,7 @@
 #
 # Bookmark management utility
 #
-# Copyright © 2015-2023 Arun Prakash Jana <engineerarun@gmail.com>
+# Copyright © 2015-2024 Arun Prakash Jana <engineerarun@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -2947,7 +2947,7 @@ SYMBOLS:
       #                    tags
 
 Version %s
-Copyright © 2015-2023 %s
+Copyright © 2015-2024 %s
 License: %s
 Webpage: https://github.com/jarun/buku
 ''' % (__version__, __author__, __license__))
@@ -5279,11 +5279,12 @@ def main():
     global ID_STR, ID_DB_STR, MUTE_STR, URL_STR, DESC_STR, DESC_WRAP, TAG_STR, TAG_WRAP, PROMPTMSG
     # readline should not be loaded when buku is used as a library
     import readline
-    try:
-        import colorama
-        colorama.just_fix_windows_console()  # noop on non-Windows systems
-    except ImportError:
-        pass
+    if sys.platform == 'win32':
+        try:
+            import colorama
+            colorama.just_fix_windows_console()  # noop on non-Windows systems
+        except ImportError:
+            pass
 
     title_in = None
     tags_in = None
@@ -5455,6 +5456,7 @@ POSITIONAL ARGUMENTS:
     --shorten index|URL  fetch shortened url from tny.im service
     --expand index|URL   expand a tny.im shortened url
     --cached index|URL   browse a cached page from Wayback Machine
+    --offline            add a bookmark without connecting to web
     --suggest            show similar tags when adding bookmarks
     --tacit              reduce verbosity, skip some confirmations
     --nostdin            do not wait for input (must be first arg)
@@ -5479,6 +5481,7 @@ POSITIONAL ARGUMENTS:
     addarg('--shorten', nargs=1, help=hide)
     addarg('--expand', nargs=1, help=hide)
     addarg('--cached', nargs=1, help=hide)
+    addarg('--offline', action='store_true', help=hide)
     addarg('--suggest', action='store_true', help=hide)
     addarg('--tacit', action='store_true', help=hide)
     addarg('--nostdin', action='store_true', help=hide)
@@ -5623,7 +5626,7 @@ POSITIONAL ARGUMENTS:
                 url, title_in, tags, desc_in = result
                 if args.suggest:
                     tags = bdb.suggest_similar_tag(tags)
-                bdb.add_rec(url, title_in, tags, desc_in, _immutable(args))
+                bdb.add_rec(url, title_in, tags, desc_in, _immutable(args), False, not args.offline)
 
     # Add record
     if args.add is not None:
@@ -5661,7 +5664,7 @@ POSITIONAL ARGUMENTS:
         if edit_aborted is False:
             if args.suggest:
                 tags = bdb.suggest_similar_tag(tags)
-            bdb.add_rec(url, title_in, tags, desc_in, _immutable(args))
+            bdb.add_rec(url, title_in, tags, desc_in, _immutable(args), False, not args.offline)
 
     # Search record
     search_results = None

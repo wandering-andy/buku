@@ -247,6 +247,7 @@ POWER TOYS:
       --shorten index|URL  fetch shortened url from tny.im service
       --expand index|URL   expand a tny.im shortened url
       --cached index|URL   browse a cached page from Wayback Machine
+      --offline            add a bookmark without connecting to web
       --suggest            show similar tags when adding bookmarks
       --tacit              reduce verbosity, skip some confirmations
       --nostdin            do not wait for input (must be first arg)
@@ -510,7 +511,7 @@ You may encounter issues with GUI editors which maintain only one instance by de
 - [Johnathan Jenkins](https://github.com/shaggytwodope)
 - [SZ Lin](https://github.com/szlin)
 
-Copyright © 2015-2023 [Arun Prakash Jana](mailto:engineerarun@gmail.com)
+Copyright © 2015-2024 [Arun Prakash Jana](mailto:engineerarun@gmail.com)
 <br>
 <p><a href="https://gitter.im/jarun/buku"><img src="https://img.shields.io/gitter/room/jarun/buku.svg?maxAge=2592000" alt="gitter chat" /></a></p>
 
